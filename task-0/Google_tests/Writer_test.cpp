@@ -54,7 +54,7 @@ ASSERT_EQ(line, "second,2,20.000000,");
 getline(test_file, line);
 ASSERT_EQ(line, "first,1,10.000000,");
 
-//getline(test_file, line);
-//ASSERT_EQ(line, "");
-//ASSERT_TRUE(test_file.eof());
+getline(test_file, line);
+ASSERT_EQ(line, "");
+ASSERT_TRUE(test_file.eof());
 }
