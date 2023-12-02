@@ -1,5 +1,4 @@
-#include "lib/googlemock/include/gmock/gmock.h"
-#include "lib/googletest/include/gtest/gtest.h"
+#include "gtest/gtest.h"
 #include "../FileReader.h"
 using namespace std;
 
