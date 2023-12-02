@@ -1,4 +1,4 @@
-#include "lib/googletest/include/gtest/gtest.h"
+#include "gtest/gtest.h"
 #include "../Parser.h"
 using namespace std;
 TEST(Parser, simple_text) {
