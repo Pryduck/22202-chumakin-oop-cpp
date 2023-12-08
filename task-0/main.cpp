@@ -42,7 +42,7 @@ int main(int argc, char** document) {
     int words_number = statistic.get_number();
     vector<std::pair<string, int>> sorted_list = statistic.sorting();
 
-    writer.writing(CSV_WORD, ',');
+    writer.writing(CSV_WORD, ';');
 
     //выводим отсортированный список
     for (int k = 0; k < sorted_list.size(); k++) {
@@ -53,7 +53,7 @@ int main(int argc, char** document) {
         double Percent_Frequency = (double)word_inf.second / words_number * 100;
 
         vector<string> all_words_info = {word, to_string(Frequency), to_string(Percent_Frequency)};
-        writer.writing(all_words_info, ',');
+        writer.writing(all_words_info, ';');
     }
 
     file_reader.close();
