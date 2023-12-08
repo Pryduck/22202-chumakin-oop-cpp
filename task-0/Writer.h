@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include "Statistic.h"
 using namespace std;
 
 class Writer {
