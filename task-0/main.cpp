@@ -6,9 +6,9 @@
 #include <string>
 #include <list>
 
-using std::string;
 
-const std::vector<string> CSV_WORD = {"word", "Frequency", "Percent_Frequency"};
+using namespace std;
+const vector<string> CSV_WORD = {"word", "Frequency", "Percent_Frequency"};
 
 int main(int argc, char** document) {
 
@@ -40,7 +40,7 @@ int main(int argc, char** document) {
 
     //получаем отсортированный список и количество слов
     int words_number = statistic.get_number();
-    vector<std::pair<string, int>> sorted_list = statistic.sorting();
+    vector<pair<string, int>> sorted_list = statistic.sorting();
 
     writer.writing(CSV_WORD, ';');
 
