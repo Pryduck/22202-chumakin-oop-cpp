@@ -1,6 +1,6 @@
 #include "Parser.h"
 
-vector<string> Parser::parsing(const string& line, bool CaseSensitive) {
+vector<string> Parser::parse(const string& line, bool CaseSensitive) {
     vector<string> words = {};
     string word;
 
