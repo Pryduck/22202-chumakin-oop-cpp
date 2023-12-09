@@ -2,7 +2,7 @@
 
 void Statistic::add(const string& word) {
     word_number++;
-    stat_map[word]++;
+    statMap[word]++;
 }
 
 int Statistic::getNumber() const {
@@ -15,8 +15,8 @@ static bool comp(const pair<string, int>& v1, const pair<string, int>& v2) {
 
 vector<pair<string, int>> Statistic::sort() const {
     vector<pair<string, int>> sorted = {};                                  //создали
-    sorted.resize(stat_map.size());                                         //задали размер
-    copy(stat_map.begin(), stat_map.end(), sorted.begin());                 //внесли элементы
+    sorted.resize(statMap.size());                                         //задали размер
+    copy(statMap.begin(), statMap.end(), sorted.begin());                 //внесли элементы
     sort(sorted.begin(), sorted.end(), comp);                               //отсортировали
     return sorted;                                                          //вернули
 }
