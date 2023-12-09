@@ -7,7 +7,7 @@ using namespace std;
 
 class Parser {
 public:
-    vector<string> parsing(const string& line, bool CaseSensitive);
+    vector<string> parse(const string& line, bool CaseSensitive);
 };
 
 #endif //TASK_0_PARSER_H
