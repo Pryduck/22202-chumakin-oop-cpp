@@ -18,8 +18,8 @@ public:
     void close();
     void reset();
 
-    bool is_next();
-    string get_next();
+    bool isNext();
+    string getNext();
 };
 
 #endif //TASK_0_FILEREADER_H
