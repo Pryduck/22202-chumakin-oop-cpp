@@ -10,16 +10,16 @@ using namespace std;
 
 class Statistic {
 private:
-    unordered_map<string, int> stat_map;
-    int word_number;
+    unordered_map<string, int> statMap;
+    int wordNumber;
 public:
     Statistic(){
-        stat_map = {};
-        word_number = 0;
+        statMap = {};
+        wordNumber = 0;
     }
-    void adding(const string& word);
-    int get_number() const;
-    vector<pair<string, int>> sorting() const;
+    void add(const string& word);
+    int getNumber() const;
+    vector<pair<string, int>> sort() const;
 };
 
 #endif //TASK_0_STATISTIC_H
