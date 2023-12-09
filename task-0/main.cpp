@@ -16,6 +16,13 @@ int main(int argc, char** document) {
         exit(1);
     }
 
+    bool sens;
+    cout <<"Case sensitive: 0/1";
+    if (cin >> 1) 
+        sens = true;
+    else 
+        sens = false;
+    
     //считывание
     FileReader file_reader(document[1]);
     Parser parser;
@@ -26,7 +33,7 @@ int main(int argc, char** document) {
     while (file_reader.is_next()) {
         //берём и парсим построчно
         string next_string = file_reader.get_next();
-        vector<string> words = parser.parsing(next_string);
+        vector<string> words = parser.parsing(next_string, sens);
 
         for (int j = 0; j < words.size(); j++) {
             string const& word = words[j];
