@@ -4,7 +4,7 @@ vector<string> Parser::parsing(const string& line, bool CaseSensitive) {
     vector<string> words = {};
     string word;
 
-    int cur_len = 0;
+    int cutLen = 0;
     for (int i = 0; i < line.size(); i++) {
         const char& symbol = line[i];
 
@@ -13,13 +13,13 @@ vector<string> Parser::parsing(const string& line, bool CaseSensitive) {
                 word += (symbol);
             else
                 word += tolower(symbol);
-            cur_len++;
+            curLen++;
         }
 
         if (!isalnum(symbol)) {
-            if (cur_len != 0) {
+            if (curLen != 0) {
                 words.push_back(word);
-                cur_len = 0;
+                curLen = 0;
                 word.clear();
             }
         }
