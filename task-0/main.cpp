@@ -17,11 +17,8 @@ int main(int argc, char** document) {
     }
 
     bool sens;
-    cout <<"Case sensitive: 0/1";
-    if (cin >> 1) 
-        sens = true;
-    else 
-        sens = false;
+    cout << "Case sensitive? (0/1)";
+    cin >> sens;
     
     //считывание
     FileReader file_reader(document[1]);
