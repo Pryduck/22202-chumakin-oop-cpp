@@ -8,11 +8,11 @@ void FileReader::close() {
     file.close();
 }
 
-bool FileReader::is_next() {
+bool FileReader::isNext() {
     return !file.eof();
 }
 
-string FileReader::get_next() {
+string FileReader::getNext() {
     if (file.eof()) return "";
     string next;
     getline(file, next);
