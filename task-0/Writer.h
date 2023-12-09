@@ -18,7 +18,7 @@ public:
 
     void open();
     void close();
-    void writing(const vector<string>& text, char separator);
+    void write(const vector<string>& text, char separator);
 };
 
 #endif //TASK_0_WRITER_H
