@@ -1,7 +1,7 @@
 #include "Statistic.h"
 
 void Statistic::add(const string& word) {
-    word_number++;
+    wordNumber++;
     statMap[word]++;
 }
 
