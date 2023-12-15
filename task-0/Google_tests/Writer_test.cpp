@@ -1,6 +1,6 @@
 #include "gtest/gtest.h"
 #include "../Writer.h"
-const vector<string> CSV_WORD = {"word", "Frequency", "Percent_Frequency"};
+const vector<string> CSV_WORD = {"word", "Frequency", "PercentFrequency"};
 
 TEST(Writer, text) {
 Writer writer("text.csv");
@@ -8,32 +8,32 @@ writer.open();
 
 Statistic statistic;
 
-statistic.adding("second");
-statistic.adding("fourth");
-statistic.adding("third");
-statistic.adding("first");
-statistic.adding("fourth");
-statistic.adding("fourth");
-statistic.adding("second");
-statistic.adding("third");
-statistic.adding("third");
-statistic.adding("fourth");
+statistic.add("second");
+statistic.add("fourth");
+statistic.add("third");
+statistic.add("first");
+statistic.add("fourth");
+statistic.add("fourth");
+statistic.add("second");
+statistic.add("third");
+statistic.add("third");
+statistic.add("fourth");
 
-int words_number = statistic.get_number();
-vector<pair<string, int>> sorted_list = statistic.sorting();
+int wordsAmount = statistic.getAmountOfWords();
+vector<pair<string, int>> sortedList = statistic.sort();
 
-writer.writing(CSV_WORD, ',');
+writer.writing(CSV_WORD, ';');
 
 //выводим отсортированный список
-for (int k = 0; k < sorted_list.size(); k++) {
-const pair<string, int>& word_info = sorted_list[k];
+for (int k = 0; k < sortedList.size(); k++) {
+const pair<string, int>& wordInfo = sortedList[k];
 
-string word = word_info.first;
-int frequency = word_info.second;
-double percent_frequency = (double)word_info.second / words_number * 100;
+string word = wordInfo.first;
+int frequency = wordInfo.second;
+double percentFrequency = (double)wordInfo.second / wordsAmount * 100;
 
-vector<string> all_words_info = {word, to_string(frequency), to_string(percent_frequency)};
-writer.writing(all_words_info, ',');
+vector<string> allWordsInfo = {word, to_string(frequency), to_string(percentFrequency)};
+writer.writing(allWordsInfo, ';');
 }
 
 writer.close();
@@ -42,17 +42,16 @@ ifstream test_file("text.csv");
 string line;
 
 getline(test_file, line);
-ASSERT_EQ(line, "word,Frequency,Percent_Frequency,");
-//ASSERT_FALSE(test_file.eof());
+ASSERT_EQ(line, "word;Frequency;PercentFrequency;");
 
 getline(test_file, line);
-ASSERT_EQ(line, "fourth,4,40.000000,");
+ASSERT_EQ(line, "fourth;4;40.000000;");
 getline(test_file, line);
-ASSERT_EQ(line, "third,3,30.000000,");
+ASSERT_EQ(line, "third;3;30.000000;");
 getline(test_file, line);
-ASSERT_EQ(line, "second,2,20.000000,");
+ASSERT_EQ(line, "second;2;20.000000;");
 getline(test_file, line);
-ASSERT_EQ(line, "first,1,10.000000,");
+ASSERT_EQ(line, "first;1;10.000000;");
 
 getline(test_file, line);
 ASSERT_EQ(line, "");
