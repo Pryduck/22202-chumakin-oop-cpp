@@ -15,9 +15,11 @@ public:
     Writer(string filename){
         this->filename = filename;
     }
-
+    //функция открытия файла
     void open();
+    //функция закрытия файла
     void close();
+    //функция записи строки с разделителем
     void write(const vector<string>& text, char separator);
 };
 
