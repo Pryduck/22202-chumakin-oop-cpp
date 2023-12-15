@@ -8,7 +8,7 @@
 
 
 using namespace std;
-const vector<string> CSV_WORD = {"word", "Frequency", "Percent_Frequency"};
+const vector<string> CSV_WORD = {"word", "Frequency", "PercentFrequency"};
 
 int main(int argc, char** document) {
 
@@ -21,20 +21,20 @@ int main(int argc, char** document) {
     cin >> sens;
     
     //считывание
-    FileReader file_reader(document[1]);
+    FileReader fileReader(document[1]);
     Parser parser;
     Statistic statistic;
-    file_reader.open();
+    fileReader.open();
 
 
-    while (file_reader.is_next()) {
+    while (fileReader.isNext()) {
         //берём и парсим построчно
-        string next_string = file_reader.get_next();
-        vector<string> words = parser.parsing(next_string, sens);
+        string nextString = fileReader.getNext();
+        vector<string> words = parser.parse(nextString, sens);
 
         for (int j = 0; j < words.size(); j++) {
             string const& word = words[j];
-            statistic.adding(word);
+            statistic.add(word);
         }
     }
 
@@ -43,24 +43,24 @@ int main(int argc, char** document) {
     writer.open();
 
     //получаем отсортированный список и количество слов
-    int words_number = statistic.get_number();
-    vector<pair<string, int>> sorted_list = statistic.sorting();
+    int wordsAmount = statistic.getAmountOfWords();
+    vector<pair<string, int>> sortedList = statistic.sort();
 
-    writer.writing(CSV_WORD, ';');
+    writer.write(CSV_WORD, ';');
 
     //выводим отсортированный список
-    for (int k = 0; k < sorted_list.size(); k++) {
-        const pair<string, int>& word_inf = sorted_list[k];
+    for (int k = 0; k < sortedList.size(); k++) {
+        const pair<string, int>& wordInf = sortedList[k];
 
-        string word = word_inf.first;
-        int Frequency = word_inf.second;
-        double Percent_Frequency = (double)word_inf.second / words_number * 100;
+        string word = wordInf.first;
+        int Frequency = wordInf.second;
+        double PercentFrequency = (double)wordInf.second / wordsAmount * 100;
 
-        vector<string> all_words_info = {word, to_string(Frequency), to_string(Percent_Frequency)};
-        writer.writing(all_words_info, ';');
+        vector<string> allWordsInfo = {word, to_string(Frequency), to_string(PercentFrequency)};
+        writer.write(allWordsInfo, ';');
     }
 
-    file_reader.close();
+    fileReader.close();
     writer.close();
 
     return 0;
