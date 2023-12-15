@@ -2,13 +2,13 @@
 #include "../Parser.h"
 using namespace std;
 
-TEST(Parser, simple_text) {
+TEST(Parser, simpleText) {
 Parser parser;
 
-string simple_text = "We gonna rapapap tonight";
+string simpleText = "We gonna rapapap tonight";
 bool sense = false;
   
-vector<string> words = parser.parse(simple_text, sense);
+vector<string> words = parser.parse(simpleText, sense);
 
 ASSERT_EQ(words, vector<string>({"we", "gonna", "rapapap", "tonight"}));
 }
@@ -27,25 +27,25 @@ ASSERT_EQ(words, vector<string>({"We", "we", "are", "duper", "Duper"}));
 
 
 
-TEST(Parser, strange_text) {
+TEST(Parser, strangeText) {
 Parser parser;
 
-string simple_text = "We$$$are**the@Champions";
+string strangeText = "We$$$are**the@Champions";
 bool sense = false;
   
-vector<string> words = parser.parse(simple_text);
+vector<string> words = parser.parse(strangeText, sense);
 
 ASSERT_EQ(words, vector<string>({"we", "are", "the", "champions"}));
 }
 
 
-TEST(Parser, no_text) {
+TEST(Parser, noText) {
 Parser parser;
 
-string no_text;
+string noText;
 bool sense = false;
   
-vector<string> words = parser.parse(no_text, sense);
+vector<string> words = parser.parse(noText, sense);
 
 ASSERT_EQ(words.size(), 0);
 }
