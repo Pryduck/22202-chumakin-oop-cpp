@@ -1,33 +1,33 @@
 #include "gtest/gtest.h"
 #include "../Statistic.h"
 
-TEST(Statistic, different_words) {
-    Statistic stat_map;
+TEST(Statistic, DifferentWords) {
+    Statistic statMap;
 
-    stat_map.adding("car");
-    stat_map.adding("bon");
-    stat_map.adding("ari");
-    stat_map.adding("123");
+    statMap.add("car");
+    statMap.add("bon");
+    statMap.add("ari");
+    statMap.add("123");
 
-    ASSERT_EQ(stat_map.get_number(), 4);
+    ASSERT_EQ(statMap.getAmountOfWords(), 4);
 }
 
-TEST(Statistic, recurring_words) {
-Statistic stat_map;
+TEST(Statistic, RecurringWords) {
+Statistic statMap;
 
-stat_map.adding("car");
-stat_map.adding("bon");
-stat_map.adding("car");
-stat_map.adding("car");
-stat_map.adding("ari");
-stat_map.adding("ari");
-stat_map.adding("123");
-stat_map.adding("123");
-stat_map.adding("123");
-stat_map.adding("123");
-ASSERT_EQ(stat_map.get_number(), 10);
+statMap.add("car");
+statMap.add("bon");
+statMap.add("car");
+statMap.add("car");
+statMap.add("ari");
+statMap.add("ari");
+statMap.add("123");
+statMap.add("123");
+statMap.add("123");
+statMap.add("123");
+ASSERT_EQ(statMap.getAmountOfWords(), 10);
 
-vector<pair<string, int>> sorted = stat_map.sorting();
+vector<pair<string, int>> sorted = statMap.sort();
 
 ASSERT_EQ(sorted[0].first, "123");
 ASSERT_EQ(sorted[0].second, 4);
@@ -39,8 +39,8 @@ ASSERT_EQ(sorted[3].first, "bon");
 ASSERT_EQ(sorted[3].second, 1);
 }
 
-TEST(Statistic, no_words) {
-Statistic stat_map;
+TEST(Statistic, NoWords) {
+Statistic statMap;
 
-ASSERT_EQ(stat_map.get_number(), 0);
+ASSERT_EQ(statMap.getAmountOfWords(), 0);
 }
