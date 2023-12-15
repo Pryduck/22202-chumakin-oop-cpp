@@ -17,8 +17,13 @@ public:
         statMap = {};
         wordNumber = 0;
     }
+    //добавляет слово в общую статистику
     void add(const string& word);
-    int getNumber() const;
+    
+    //получает общее количество слов 
+    int getAmountOfWords() const;
+    
+    //создаёт отсортированный вектор слов
     vector<pair<string, int>> sort() const;
 };
 
