@@ -1,6 +1,6 @@
 #include "Parser.h"
 
-vector<string> Parser::parse(const string& line, bool CaseSensitive) {
+vector<string> Parser::parse(const string& line, bool caseSensitive) {
     vector<string> words = {};
     string word;
 
@@ -9,7 +9,7 @@ vector<string> Parser::parse(const string& line, bool CaseSensitive) {
         const char& symbol = line[i];
 
         if (isalnum(symbol)) {
-            if (CaseSensitive)
+            if (caseSensitive)
                 word += (symbol);
             else
                 word += tolower(symbol);
