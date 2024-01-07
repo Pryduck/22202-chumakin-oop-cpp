@@ -1,8 +1,5 @@
 #include "gtest/gtest.h"
-#include "../BitArray.cpp"
 #include "../BitArray.h"
-#include "../ExceptionThrow.h"
-
 const int ARRAY_SIZE = 100;
 
 //основные тесты..........................................................
