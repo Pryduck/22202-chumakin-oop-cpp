@@ -7,7 +7,6 @@
 #include <iostream>
 #include <cmath>
 #include "ExceptionThrow.h"
-using namespace std;
 
 #define BLOCK_SIZE 32 //размер блока = 32 бит
 #define FULL_BLOCK 0xffffffff // 8*4 = 32 "1"
@@ -15,6 +14,9 @@ class BitArray {
 private:
     vector<unsigned long> arrayOfBlocks;
     int numBits;
+
+using std::string;
+using std::vector;
 
     class Bit {
     private:
