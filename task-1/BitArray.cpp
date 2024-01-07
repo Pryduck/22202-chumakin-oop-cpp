@@ -3,9 +3,7 @@
 #include "BitArray.h"
 
 BitArray::BitArray(int numBits, unsigned long value) {
-    if (value != 0 && numBits < BLOCK_SIZE) {
-        throw ExceptionThrow("BitArray is too small");
-    }
+    
     //считаем количество блоков
     int amountOfBlocks = (numBits + BLOCK_SIZE - 1) / BLOCK_SIZE;
 
