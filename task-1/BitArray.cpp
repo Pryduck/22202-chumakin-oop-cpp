@@ -3,14 +3,25 @@
 #include "BitArray.h"
 
 BitArray::BitArray(int numBits, unsigned long value) {
-    
+    if (numBits < 0) {
+        throw ExceptionThrow("Number of bits should be positive");
+    }
+    int count = 0;
+
     //считаем количество блоков
     int amountOfBlocks = (numBits + BLOCK_SIZE - 1) / BLOCK_SIZE;
-
     this->numBits = numBits;
     //задаём вектор
     arrayOfBlocks.resize(amountOfBlocks);
-    arrayOfBlocks[0] = value;
+
+    //значение нужно будет сдвинуть
+    unsigned long copVal = value;
+    while (copVal) {
+        copVal /= 2;
+        count++;
+    }
+    unsigned long shift = BLOCK_SIZE - count;
+    arrayOfBlocks[0] = value << shift;
 }
 
 BitArray::BitArray(const BitArray &b) {
