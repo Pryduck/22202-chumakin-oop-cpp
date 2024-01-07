@@ -1,23 +1,22 @@
 #include "gtest/gtest.h"
 #include "../BitArray.h"
-const int ARRAY_SIZE = 100;
 
 //основные тесты..........................................................
 
 TEST(BitArray, General) {
-    BitArray a(ARRAY_SIZE, 0x10101);
+    BitArray a(100, 0x10101);
 
     ASSERT_TRUE(a.any());
     ASSERT_FALSE(a.none());
-    ASSERT_EQ(a.size(), ARRAY_SIZE);
+    ASSERT_EQ(a.size(), 100);
     ASSERT_FALSE(a.empty());
     ASSERT_EQ(a.count(), 3);
 }
 
 
 TEST (BitArray, Swap) {
-    BitArray a1(ARRAY_SIZE, 5);
-    BitArray a2(ARRAY_SIZE + 10, 7);
+    BitArray a1(100, 5);
+    BitArray a2(110, 7);
 
     BitArray aCopy1(a1);
     BitArray aCopy2(a2);
@@ -42,6 +41,11 @@ a1[7] = true;
 a1 &= a2;
 ASSERT_EQ("00000000", a1.toString());
 
+a1[1] = true;
+a1[3] = true;
+a1[5] = true;
+a1[7] = true;
+
 a2.set();
 a1 &= a2;
 ASSERT_EQ("01010101", a1.toString());
@@ -61,6 +65,7 @@ a1[7] = true;
 a1 |= a2;
 ASSERT_EQ("01010101", a1.toString());
 
+
 a2.set();
 a1 |= a2;
 ASSERT_EQ("11111111", a1.toString());
@@ -77,21 +82,22 @@ a1[3] = true;
 a1[5] = true;
 a1[7] = true;
 
-a1 |= a2;
+a1 ^= a2;
 ASSERT_EQ("01010101", a1.toString());
 
+
 a2.set();
-a1 |= a2;
+a1 ^= a2;
 ASSERT_EQ("10101010", a1.toString());
 
 }
 
 
 TEST(BitArray, Resize) {
-BitArray a(20, 0x111);
+BitArray a(100, 0x111);
 
-a.resize(30);
-ASSERT_EQ(a.size(), 30);
+a.resize(110);
+ASSERT_EQ(a.size(), 110);
 ASSERT_EQ(a.count(), 3);
 }
 
@@ -132,14 +138,17 @@ ASSERT_THROW(array.resize(-1), ExceptionThrow);
 //сдвиги......................................................................
 
 TEST(BitArray, PushBack) {
-BitArray array(10, 1);
+BitArray array(10, 0);
+array[0] = true;
 array.pushBack(true);
 ASSERT_EQ("10000000001", array.toString());
+~array;
 }
 
 
 TEST (BitArray, RightShift) {
-BitArray array(5, 1);
+BitArray array(5, 0);
+array[0] = true;
 array >>= 2;
 string str = "00100";
 ASSERT_EQ(str, array.toString());
@@ -156,7 +165,8 @@ ASSERT_EQ(str, array.toString());
 
 
 TEST (BitArray, RightShiftCopy) {
-BitArray array(5, 1);
+BitArray array(5, 0);
+array[0] = true;
 ASSERT_EQ("00100", (array>>2).toString());
 }
 
@@ -171,19 +181,19 @@ ASSERT_EQ("00100", (array<<2).toString());
 //(не)равенство...................................................................
 
 TEST (BitArray, Equality) {
-BitArray a1(10, 5);
-BitArray a2(10, 5);
+BitArray a1(100, 0x111);
+BitArray a2(100, 0x111);
 
 ASSERT_TRUE(a1 == a2);
 ASSERT_FALSE(a1 != a2);
 }
 
 TEST (BitArray, Inequality) {
-BitArray a1(10, 5);
-BitArray a2(10, 6);
+BitArray a1(100, 0x111);
+BitArray a2(100, 0x101);
 
 ASSERT_TRUE(a1 != a2);
-ASSERT_FALSE(a1 != a2);
+ASSERT_FALSE(a1 == a2);
 }
 
 
@@ -196,15 +206,12 @@ TEST(BitArray, clear) {
 
 //индексы.........................................................................
 TEST (BitArray, ind) {
-BitArray array(6, 37); //100101
+BitArray array(10, 0);
 
-bool a = array[2];
-bool b = array[3];
+array[0] = true;
+array[3] = true;
+array[7] = true;
+array[9] = true;
 
-ASSERT_EQ(true, b);
-ASSERT_EQ(false, a);
-
-array[1] = true;
-bool c = array[1];
-ASSERT_EQ(true, c);
+ASSERT_EQ(array.toString(), "1001000101");
 }
