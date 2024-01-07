@@ -5,12 +5,12 @@
 #include <string>
 using namespace std;
 
-class ExceptionThrow : public exception {
+class ExceptionThrow : public std::exception {
 private:
-    string errorMessage;
+    std::string errorMessage;
 
 public:
-    ExceptionThrow(string errorMessage) {
+    ExceptionThrow(std::string errorMessage) {
         this->errorMessage = errorMessage;
     }
 
