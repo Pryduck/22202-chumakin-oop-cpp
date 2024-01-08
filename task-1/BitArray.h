@@ -40,10 +40,10 @@ public:
     ~BitArray() = default;
 
     //Конструирует массив, хранящий заданное количество бит.
-    //Первые sizeof(long) бит можно инициализровать с помощью параметра value.
+    //Первые sizeof(unsigned long) бит можно инициализровать с помощью параметра value.
     explicit BitArray(int numBits, unsigned long value = 0);
 
-    // Копировать конструктор
+    // конструктор копирования
     BitArray(const BitArray &b);
 
     //Обменивает значения двух битовых массивов.
